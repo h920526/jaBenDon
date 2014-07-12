@@ -95,14 +95,6 @@ public class OrderDetailTest extends BaseTestCase {
 		newOrderDetail.setOrder(newOrder);
 		newOrderDetail = orderDetailService.createOrderDetail(newOrderDetail);
 
-		System.out.println(orderDetailToAdd.getOrder().getOrderKey());
-		System.out.println(orderDetailToAdd.getOrder().getOrderAt());
-		System.out.println(orderDetailToAdd.getOrder().getShop().getShopKey());
-		System.out.println("=-------------------------------");
-		System.out.println(newOrderDetail.getOrder().getOrderKey());
-		System.out.println(newOrderDetail.getOrder().getOrderAt());
-		System.out.println(newOrderDetail.getOrder().getShop().getShopKey());
-
 		List<OrderDetail> orderDetails = orderDetailService
 				.findNewestDateOrderDetailsByShopKey(shopToAdd.getShopKey());
 		Assert.assertEquals(1, orderDetails.size());
