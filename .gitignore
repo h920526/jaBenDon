@@ -3,3 +3,6 @@
 /.classpath
 /.project
 /src/main/webapp/bower_components/angular/docs/
+/src/main/webapp/bower_components/clockpicker/assets/
+/src/main/webapp/bower_components/jquery-ui/demos/
+/src/main/webapp/bower_components/jquery-ui/docs/
