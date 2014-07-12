@@ -9,13 +9,14 @@ Requirements
 1. JRE 6+
 2. Apache tomcat 7+
 
-Installation
+Usage
 ========================================
 
-1. Import as a maven project
-2. Copy webapp/WEB-INF/config.properties.sample at deploy folder as config.properties
+1. Unzip jaBenDon.war as jaBenDon
+2. Copy config.properties.sample at jaBenDon/WEB-INF as config.properties
 3. Modify it's db.jdbcUrl at webapp/WEB-INF/config.properties
-4. Startup tomcat7
+4. Copy this jaBenDon folder into your tomcat webapps folder
+5. Startup tomcat7
 
 Feature
 ========================================
