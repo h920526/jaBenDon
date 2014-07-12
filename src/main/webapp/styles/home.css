@@ -1,0 +1,206 @@
+.header {
+	margin-bottom: 20px;
+}
+
+.footer {
+	margin-top: 20px;
+}
+
+[contenteditable="true"] {
+	min-height: 22px;
+}
+
+[contenteditable="true"]:focus {
+	border: 1px solid #A5C7FE;
+}
+
+/**
+ * carousel shop
+ */
+#carousel-shop.carousel .carousel-inner {
+	box-shadow: 0 0 10px gray;
+	background-color: #4E4D4D;
+	border-radius: 10px;
+	height: 550px;
+}
+
+#carousel-shop.carousel .carousel-control {
+	border-radius: 10px;
+	margin: 5px;
+	width: 50px;
+}
+
+#carousel-shop.carousel .item {
+	padding: 0 60px 60px 60px;
+}
+
+#carousel-shop.carousel .carousel-shop-title {
+	color: #fff;
+	text-shadow: 0 0 2px #428bca;
+	line-height: 30px;
+}
+
+#carousel-shop.carousel .carousel-shop-phone {
+	font-size: 14px;
+	color: lightgray;
+	text-align: center;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+#carousel-shop.carousel .carousel-shop-phone i {
+	text-decoration: underline;
+}
+
+#carousel-shop.carousel .carousel-shop-close {
+	color: lightgray;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+#carousel-shop.carousel .carousel-shop-note {
+	color: orange;
+}
+
+#carousel-shop.carousel .carousel-shop-content {
+	color: #fff;
+}
+
+#carousel-shop.carousel .carousel-play-control {
+	bottom: 35px;
+	right: 100px;
+	position: absolute;
+	text-align: center;
+	z-index: 1;
+	border: 1px solid white;
+	border-radius: 3px;
+	color: lightgray;
+}
+
+#carousel-shop.carousel .carousel-play-control:hover {
+	background-color: lightgray;
+	color: gray;
+}
+
+#carousel-shop.carousel .carousel-play-control .glyphicon {
+	padding: 5px 7px 7px 7px;
+	cursor: pointer;
+}
+
+/**
+ * order dialog
+ */
+#orderDialog {
+	width: 550px;
+	height: 406px;
+	left: auto;
+	top: auto;
+	right: 2%;
+	bottom: 5%;
+	overflow: hidden;
+	z-index: 100;
+}
+
+#orderDialog .modal-dialog {
+	margin: 20px;
+	width: auto;
+}
+
+#orderDialog .modal-title {
+	color: gray;
+}
+
+#orderDialog .modal-body {
+	padding: 0 20px;
+	height: 200px;
+	overflow: auto;
+}
+
+#orderDialog .modal-body .table {
+	margin-bottom: 0;
+}
+
+#orderDialog .modal-body table thead {
+	color: #428bca;
+}
+
+#orderDialog .mealColumn {
+	width: 30%;
+}
+
+#orderDialog .priceColumn {
+	width: 10%;
+}
+
+#orderDialog .controlColumn {
+	width: 10%;
+}
+
+#orderDialog .controlColumn .glyphicon {
+	cursor: pointer;
+}
+
+#orderDialog .removeOrderDetail {
+	color: lightgray;
+	cursor: pointer;
+}
+
+#orderDialog .modal-footer {
+	font-weight: bold;
+	margin-top: 0;
+	padding: 10px 20px;
+	text-align: left;
+	text-shadow: 0 0 2px lightgray;
+	font-size: 13px;
+	color: gray;
+}
+
+#orderDialog .orderTitle {
+	overflow: hidden;
+}
+
+#orderDialog .countDown {
+	color: #d9534f;
+}
+
+#orderDialog .orderNote {
+	height: 22px;
+}
+
+#orderDialog .totalPrice {
+	color: #f0ad4e;
+	height: 22px;
+	text-decoration: underline;
+	text-align: center;
+	font-size: 15px;
+}
+
+#orderDialog .totalCount {
+	color: #f0ad4e;
+	font-size: 15px;
+}
+
+#orderDialog .close {
+	padding: 0 7px;
+}
+
+#orderDialog .clockpicker .form-control {
+	height: 22px;
+	padding: 1px 12px;
+}
+
+#orderDialog .clockpicker .input-group-addon {
+	padding: 2px 4px;
+}
+
+/**
+ * select choice
+ */
+.orderUserChoice .select2-input {
+	padding: 0 5px !important;
+}
+
+.orderUserChoice .orderUserPaid {
+	background-image: linear-gradient(to top, #5cb85c 1%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%)
+		!important;
+}

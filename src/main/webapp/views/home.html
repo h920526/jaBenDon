@@ -1,0 +1,104 @@
+<div class="header">
+	<ul class="nav nav-pills pull-right">
+		<li class="active" ng-class="!isOrderDialogVisible&&carouselShops.length<=0?'disabled':null"><a href="javascript:void(0)" ng-click="toggleOrderDialog()">Today bendon</a></li>
+		<li><a href="javascript:void(0)" ng-click="addShop()">Add shop</a></li>
+	</ul>
+	<h3 class="text-muted" translate="product_name">
+		</span>
+	</h3>
+</div>
+
+<div id="carousel-shop" class="carousel slide" data-ride="carousel" carousel-directive="initCarouselShop()" carousel-directive-onslide="onSlideCarouselShop($event)" carousel-directive-onslid="onSlidCarouselShop()">
+	<!-- Indicators -->
+	<ol class="carousel-indicators">
+		<li data-target="#carousel-shop" ng-repeat="carouselShop in carouselShops" data-slide-to="{{$index}}" ng-class="isCarouselSlideStoped && activedShopIndex===$index?'active':null"></li>
+	</ol>
+	<div class="carousel-play-control">
+		<span class="glyphicon glyphicon-pause" ng-show="carouselPlayControl" ng-click="pauseCarouselShop($event)"></span> <span class="glyphicon glyphicon-play" ng-show="!carouselPlayControl" ng-click="playCarouselShop($event)"></span>
+	</div>
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner">
+		<div class="item" ng-repeat="carouselShop in carouselShops" ng-class="isCarouselSlideStoped && activedShopIndex===$index?'active':null">
+			<h3 class="row">
+				<div class="col-md-8 carousel-shop-title" contenteditable="true" ng-model="carouselShop.shopTitle" trust-as-html="true" ng-blur="updateShop(carouselShop, $event)"></div>
+				<div class="col-md-3 carousel-shop-phone">
+					Phone: <i contenteditable="true" ng-model="carouselShop.shopPhone" ng-blur="updateShop(carouselShop, $event)"></i>
+				</div>
+				<div class="col-md-1 carousel-shop-close">
+					<span class="glyphicon glyphicon-remove" ng-click="confirmToDeleteShop(carouselShop)"></span>
+				</div>
+			</h3>
+			<div class="carousel-shop-note" contenteditable="true" ng-model="carouselShop.shopNote" trust-as-html="true" ng-blur="updateShop(carouselShop, $event)"></div>
+			<hr />
+			<div class="carousel-shop-content" ng-bind-html="carouselShop.shopContent | toTrustedHtmlFilter"></div>
+		</div>
+	</div>
+	<!-- Controls -->
+	<a class="left carousel-control" href="javascript:void(0)" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span>
+	</a> <a class="right carousel-control" href="javascript:void(0)" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>
+
+<div id="orderDialog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" dialog-directive="" dialog-directive-oninit="initOrderDialog()" dialog-directive-onshow="onShowOrderDialog(order)" dialog-directive-onhide="onHideOrderDialog()"
+	dialog-directive-ondrag="hideClockPicker()">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!-- right to left -->
+				<button type="button" class="close" ng-click="confirmToDeleteOrder(order)">&times;</button>
+				<button type="button" class="close" ng-click="hideOrderDiaglog(true)">&#8211;</button>
+				<h4 class="modal-title orderTitle" ng-bind="order.shop.shopTitle | stripHtmlFilter"></h4>
+			</div>
+			<div class="modal-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="mealColumn">Meal</th>
+							<th class="priceColumn">Price</th>
+							<th class="orderNames">Names</th>
+							<th class="controlColumn"><span class="glyphicon glyphicon-plus" ng-click="addOrderDetail(order)"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="orderDetail in orderDetails" id="orderDetailKey_{{orderDetail.orderDetailKey}}">
+							<td contenteditable="true" onmousedown="event.stopPropagation()" ng-model="orderDetail.mealName" ng-blur="updateOrderDetail(orderDetail)"></td>
+							<td contenteditable="true" onmousedown="event.stopPropagation()" ng-model="orderDetail.mealPrice" ng-blur="updateOrderDetail(orderDetail);updateOrder(order, true);"></td>
+							<td onmousedown="event.stopPropagation()"><input type="hidden" select-choice-directive="initOrderUserChoice(orderDetail)" select-choice-directive-onchange="onChangeOrderUserChoice($event, orderDetail)"
+								select-choice-directive-onclick="toggleOrderUserChoice($event)" /></td>
+							<td><span class="glyphicon glyphicon-remove removeOrderDetail" ng-click="confirmToDeleteOrderDetail(orderDetail)"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-md-2">Deadline:</div>
+					<div class="col-md-5 deadline">
+						<div class="input-group clockpicker" clock-picker-directive="initClockPicker()">
+							<input type="text" class="form-control" ng-model="order.deadline" format-time-directive="initUtcTimeFormatter()" ng-change="updateOrder(order, false)" /> <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span>
+							</span>
+						</div>
+					</div>
+					<div class="col-md-5">
+						/ <span class="countDown" ng-bind="order.countDown||0"></span> s
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">Owner:</div>
+					<div class="col-md-10 owner" contenteditable="true" onmousedown="event.stopPropagation()" ng-model="order.owner" ng-blur="updateOrder(order, false)"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">Note:</div>
+					<div class="col-md-10 orderNote" contenteditable="true" onmousedown="event.stopPropagation()" ng-model="order.orderNote" ng-blur="updateOrder(order, false)"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">Total:</div>
+					<div class="col-md-5 totalPrice" contenteditable="true" onmousedown="event.stopPropagation()" ng-model="order.totalPrice" ng-blur="updateOrder(order)"></div>
+					<div class="col-md-5">
+						/ <span class="totalCount glyphicon glyphicon-user" ng-bind="order.totalAmount||0"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

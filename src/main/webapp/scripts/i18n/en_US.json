@@ -1,0 +1,14 @@
+{
+	"product_name": "jaBenDon",
+
+	"-----": "----- home -----",
+	"confirm_replace_today_order": "Today order existed, are you sure to replace this order?",
+	"confirm_delete_shop": "Are you sure to delete this shop?",
+	"confirm_delete_order": "Are you sure to delete this order?",
+	"confirm_delete_order_detail": "Are you sure to delete this meal?",
+	"generate_shop_default_title": "Insert title here",
+	"generate_shop_default_content": "Insert content here",
+	"generate_shop_default_phone": "Insert phone here",
+	"generate_shop_default_note": "Insert note here",
+	"order_time_up": "Time's up"
+}

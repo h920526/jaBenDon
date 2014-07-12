@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title translate="product_name">jaBenDon</title>
+<!-- vendor css -->
+<link rel="stylesheet" href="bower_components/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="bower_components/bootstrap/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="bower_components/jumbotron-narrow.css" />
+<link rel="stylesheet" href="bower_components/jquery-ui/themes/base/minified/jquery-ui.min.css" />
+<link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css" />
+<link rel="stylesheet" href="bower_components/clockpicker/dist/bootstrap-clockpicker.min.css" />
+<link rel="stylesheet" href="bower_components/select2/select2.css" />
+<!-- own css -->
+<link rel="stylesheet" href="styles/home.css" />
+<!-- vendor js -->
+<script type="text/javascript" src="bower_components/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular-route.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular-cookies.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular-animate.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script type="text/javascript" src="bower_components/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="bower_components/bootbox.min.js"></script>
+<script type="text/javascript" src="bower_components/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript" src="bower_components/select2/select2.min.js"></script>
+<!-- own js -->
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/service/sync-service.js"></script>
+<script type="text/javascript" src="scripts/service/shop-service.js"></script>
+<script type="text/javascript" src="scripts/service/order-service.js"></script>
+<script type="text/javascript" src="scripts/service/order-detail-service.js"></script>
+<script type="text/javascript" src="scripts/service/order-user-service.js"></script>
+<script type="text/javascript" src="scripts/factory/date-factory.js"></script>
+<script type="text/javascript" src="scripts/factory/object-factory.js"></script>
+<script type="text/javascript" src="scripts/factory/rest-factory.js"></script>
+<script type="text/javascript" src="scripts/factory/sync-factory.js"></script>
+<script type="text/javascript" src="scripts/factory/shop-factory.js"></script>
+<script type="text/javascript" src="scripts/factory/order-factory.js"></script>
+<script type="text/javascript" src="scripts/factory/order-detail-factory.js"></script>
+<script type="text/javascript" src="scripts/factory/order-user-factory.js"></script>
+<script type="text/javascript" src="scripts/filter/html-tag-filter.js"></script>
+<script type="text/javascript" src="scripts/directive/carousel-directive.js"></script>
+<script type="text/javascript" src="scripts/directive/clockpicker-directive.js"></script>
+<script type="text/javascript" src="scripts/directive/contenteditable-directive.js"></script>
+<script type="text/javascript" src="scripts/directive/dialog-directive.js"></script>
+<script type="text/javascript" src="scripts/directive/format-time-directive.js"></script>
+<script type="text/javascript" src="scripts/directive/select-choice-directive.js"></script>
+<script type="text/javascript" src="scripts/controller/home-controller.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div ng-view=""></div>
+		<div class="footer">
+			<p>&copy; <span ng-bind="'product_name' | translate"></span> 2014</p>
+		</div>
+	</div>
+</body>
+</html>
