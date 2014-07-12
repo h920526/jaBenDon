@@ -23,7 +23,7 @@ public class Shop implements Serializable {
 	@Column(name = "`shop_key`")
 	private Long shopKey;
 
-	@Column(name = "`shop_title`")
+	@Column(name = "`shop_title`", length = 1024)
 	private String shopTitle;
 
 	@Column(name = "`shop_content`")
@@ -33,7 +33,7 @@ public class Shop implements Serializable {
 	@Column(name = "`shop_phone`")
 	private String shopPhone;
 
-	@Column(name = "`shop_note`")
+	@Column(name = "`shop_note`", length = 1024)
 	private String shopNote;
 
 	@Column(name = "`created_at`")

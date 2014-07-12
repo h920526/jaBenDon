@@ -38,7 +38,7 @@ public class Order implements Serializable {
 	@Column(name = "`total_amount`")
 	private Integer totalAmount;
 
-	@Column(name = "`order_note`")
+	@Column(name = "`order_note`", length = 1024)
 	private String orderNote;
 
 	@Column(name = "`deadline`")
