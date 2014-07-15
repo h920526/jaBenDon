@@ -21,7 +21,7 @@
 	box-shadow: 0 0 10px gray;
 	background-color: #4E4D4D;
 	border-radius: 10px;
-	height: 550px;
+	min-height: 550px;
 }
 
 #carousel-shop.carousel .carousel-control {
