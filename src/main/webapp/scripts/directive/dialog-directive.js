@@ -29,22 +29,30 @@ angular.module('app').directive('dialogDirective', [ '$interval', '$timeout', '$
 		element.removeData('countDownTimer');
 	}
 
+	function calculateCountDown(deadline) {
+		if (deadline == null || deadline === '' || isNaN(deadline)) {
+			return 0;
+		}
+		var nowUtcTime = DateFactory.nowUTCDate().getTime();
+		var countDown = Math.round((deadline - nowUtcTime) / 1000);
+		return (countDown > 0 ? countDown : 0);
+	}
+
 	function startCountDownTimer(element, $scope) {
 		stopCountDownTimer(element);
 		if ($scope.order == null || $scope.order.orderKey == null) {
 			$scope.order.countDown = null;
 			return;
 		}
-		var previousCountDown = null;
+		var previousCountDown = 0;
 		var countDownTimer = $interval(function() {
-			var deadline = $scope.order.deadline;
-			if (deadline == null || deadline === '' || isNaN(deadline)) {
+			var countDown = $scope.order.countDown = calculateCountDown($scope.order.deadline);
+			if (countDown === previousCountDown) {
 				return;
 			}
-			var nowUtcTime = DateFactory.nowUTCDate().getTime();
-			var countDown = Math.round((deadline - nowUtcTime) / 1000);
-			countDown = $scope.order.countDown = (countDown > 0 ? countDown : null);
-			if (previousCountDown != null && previousCountDown > 0 && countDown <= 0) {
+			var $modelContent = $('>.modal-dialog>.modal-content', element).removeClass('countDownAlert');
+			if (countDown <= 0) {
+				$modelContent.addClass('countDownAlert');
 				alert($translate.instant('order_time_up'));
 			}
 			previousCountDown = countDown;

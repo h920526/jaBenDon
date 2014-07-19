@@ -40,7 +40,7 @@ angular.module('app').directive(
 				});
 				$(document).click(function(event) {
 					var $target = $(event.target);
-					if (!$target.is('a, #carousel-shop, #orderDialog, .clockpicker-popover, .mce-window') && $target.parents('#carousel-shop, #orderDialog, .clockpicker-popover, .mce-window').length <= 0) {
+					if (!$scope.isOrderDialogVisible && !$target.is('a, #carousel-shop, #orderDialog, .clockpicker-popover, .mce-window') && $target.parents('#carousel-shop, #orderDialog, .clockpicker-popover, .mce-window').length <= 0) {
 						$scope.playCarouselShop();
 					}
 				});

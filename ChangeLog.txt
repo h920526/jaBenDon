@@ -3,6 +3,7 @@ jaBenDon Change Log
 Version 1.0.1
 ====================
 ．Refine trusted html rules
+．Refine alert style
 
 Version 1.0.0
 ====================

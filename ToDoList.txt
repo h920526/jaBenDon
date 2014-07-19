@@ -2,3 +2,4 @@ jaBenDon Feature Request
 
 ====================
 
+1. replace with websocket
