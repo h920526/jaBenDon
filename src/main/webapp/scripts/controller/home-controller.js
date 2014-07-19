@@ -275,6 +275,9 @@ angular.module('app').controller(
 			};
 
 			$scope.updateShop = function(shop, $event) {
+				
+				console.log(222);
+				
 				if ($event != null && $event.relatedTarget != null && $($event.relatedTarget).is('#orderDialog')) {
 					return;
 				}

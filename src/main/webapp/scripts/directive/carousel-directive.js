@@ -88,7 +88,7 @@ angular.module('app').directive(
 				if (activedShop == null) {
 					return;
 				}
-				$scope.$apply(function() {
+				$scope.applyScope(function() {
 					activedShop.shopContent = shopContent;
 				});
 				carouselEditor.destroy();
@@ -96,7 +96,7 @@ angular.module('app').directive(
 			}
 
 			function onSlideCarouselShop(element, $scope, $event) {
-				$scope.$apply(function() {
+				$scope.applyScope(function() {
 					$scope.isCarouselSlideStoped = false;
 				});
 				activingShopIndex = $($event.relatedTarget).index();
@@ -105,7 +105,7 @@ angular.module('app').directive(
 			}
 
 			function onSlidCarouselShop(element, $scope) {
-				$scope.$apply(function() {
+				$scope.applyScope(function() {
 					$scope.activedShopIndex = activingShopIndex;
 					$scope.isCarouselSlideStoped = true;
 				});

@@ -40,6 +40,12 @@ angular.module('app').directive('contenteditable', [ '$sce', '$filter', function
 			}
 			element.on('blur keyup change', function() {
 				scope.$apply(read);
+			}).each(function() {
+				// change event sequence to first one!
+				var events = $._data(this, "events");
+				events.blur.unshift(events.blur.pop());
+				events.keyup.unshift(events.keyup.pop());
+				events.change.unshift(events.change.pop());
 			});
 
 			// initialize (no need for this webapp)
