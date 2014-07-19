@@ -16,20 +16,20 @@ angular.module('app').filter('toTrustedHtmlFilter', [ '$sce', function($sce) {
 			return escapeEntities[entity];
 		});
 	}
-
 	return function(text, ignoreWrapper) {
+		if (text != null && text !== '') {
+			// getTrustedHtml will strip css style, but we need it
+			text = text.replace(new RegExp('(<(' + unsafeTags.join('|') + '))', 'gi'), function(entity) {
+				return escapeHtml(entity);
+			});
+		}
+		return (ignoreWrapper ? text : $sce.trustAsHtml(text));
+	};
+} ]).filter('stripHtmlFilter', [ '$sce', function($sce) {
+	return function(text) {
 		if (text == null) {
 			return text;
 		}
-		text = text.replace(new RegExp('(<(' + unsafeTags.join('|') + '))', 'gi'), function(entity) {
-			return escapeHtml(entity);
-		});
-		return (ignoreWrapper ? text : $sce.trustAsHtml(text));
+		return $("<div/>").html($sce.getTrustedHtml(text)).text();
 	};
-} ]).filter('stripHtmlFilter', function() {
-	return function(text) {
-		var tmpDiv = document.createElement("div");
-		tmpDiv.innerHTML = text;
-		return tmpDiv.textContent || tmpDiv.innerText || "";
-	};
-});
+} ]);

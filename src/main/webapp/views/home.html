@@ -20,7 +20,7 @@
 	<div class="carousel-inner">
 		<div class="item" ng-repeat="carouselShop in carouselShops" ng-class="isCarouselSlideStoped && activedShopIndex===$index?'active':null">
 			<h3 class="row">
-				<div class="col-md-8 carousel-shop-title" contenteditable="true" ng-model="carouselShop.shopTitle" trust-as-html="true" ng-blur="updateShop(carouselShop, $event)"></div>
+				<div class="col-md-8 carousel-shop-title" contenteditable="true" ng-model="carouselShop.shopTitle" ng-blur="updateShop(carouselShop, $event)"></div>
 				<div class="col-md-3 carousel-shop-phone">
 					Phone: <i contenteditable="true" ng-model="carouselShop.shopPhone" ng-blur="updateShop(carouselShop, $event)"></i>
 				</div>
@@ -28,7 +28,7 @@
 					<span class="glyphicon glyphicon-remove" ng-click="confirmToDeleteShop(carouselShop)"></span>
 				</div>
 			</h3>
-			<div class="carousel-shop-note" contenteditable="true" ng-model="carouselShop.shopNote" trust-as-html="true" ng-blur="updateShop(carouselShop, $event)"></div>
+			<div class="carousel-shop-note" contenteditable="true" ng-model="carouselShop.shopNote" ng-blur="updateShop(carouselShop, $event)"></div>
 			<hr />
 			<div class="carousel-shop-content" ng-bind-html="carouselShop.shopContent | toTrustedHtmlFilter"></div>
 		</div>

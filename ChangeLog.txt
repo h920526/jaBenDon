@@ -1,0 +1,9 @@
+jaBenDon Change Log
+
+Version 1.0.1
+====================
+．Refine trusted html rules
+
+Version 1.0.0
+====================
+．First version
