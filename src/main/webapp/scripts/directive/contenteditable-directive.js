@@ -1,14 +1,15 @@
+'use strict';
+
 angular.module('app').directive('contenteditable', [ '$sce', '$filter', function($sce, $filter) {
 	return {
-		restrict: 'A', // only activate on element attribute
-		require: '?ngModel', // get a hold of NgModelController
+		restrict: 'A',
+		require: '?ngModel',
 		link: function(scope, element, attrs, ngModel) {
-			if (!ngModel)
-				return; // do nothing if no ng-model
-
-			// Specify how UI should be updated
+			if (!ngModel) {
+				return;
+			}
+			// model -> view
 			ngModel.$render = function() {
-				// viewValue could be a number
 				var modelValue = ngModel.$viewValue;
 				if (modelValue == null) {
 					modelValue = '';
@@ -18,28 +19,31 @@ angular.module('app').directive('contenteditable', [ '$sce', '$filter', function
 				if (attrs.trustAsHtml) {
 					element.html($filter('toTrustedHtmlFilter')(modelValue, true));
 				} else {
-					element.html($sce.getTrustedHtml(modelValue));
+					element.text($filter('stripHtmlFilter')(modelValue));
 				}
 			};
 
-			// Listen for change events to enable binding
+			// view -> model
+			function read() {
+				var modelValue = element.html();
+				if (modelValue === '<br>') {
+					modelValue = '';
+				}
+				if (attrs.trustAsHtml) {
+					modelValue = $filter('toTrustedHtmlFilter')(modelValue, true);
+				} else {
+					modelValue = $filter('stripHtmlFilter')(modelValue);
+				}
+				ngModel.$setViewValue(modelValue);
+				// reset
+				element.html(modelValue);
+			}
 			element.on('blur keyup change', function() {
 				scope.$apply(read);
 			});
 
-			// read(); // initialize (no need for this webapp)
-
-			// Write data to the model
-			function read() {
-				var html = element.html();
-				// When we clear the content editable the browser leaves a <br>
-				// behind
-				// If strip-br attribute is provided then we strip this out
-				if (attrs.stripBr && html == '<br>') {
-					html = '';
-				}
-				ngModel.$setViewValue(html);
-			}
+			// initialize (no need for this webapp)
+			// read();
 		}
 	};
 } ]);
