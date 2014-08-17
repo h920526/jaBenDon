@@ -52,4 +52,9 @@ public class ShopRest {
 	 * custom service
 	 */
 
+	@RequestMapping(value = "rest/shop/shopKey", method = RequestMethod.GET)
+	public List<Long> findShopKeys() {
+		return shopService.findAllShopKeys();
+	}
+
 }

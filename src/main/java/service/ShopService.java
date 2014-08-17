@@ -20,6 +20,8 @@ public interface ShopService {
 	 * custom service
 	 */
 
+	public List<Long> findAllShopKeys();
+
 	public void archiveShop(long shopKey);
 
 	public List<Shop> findShopsNewerThan(long utcTime);

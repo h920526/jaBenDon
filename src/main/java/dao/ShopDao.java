@@ -17,6 +17,9 @@ public interface ShopDao extends JpaRepository<Shop, Long> {
 	@Query("SELECT s FROM Shop s WHERE s.isArchived = false")
 	public List<Shop> findAllShops();
 
+	@Query("SELECT s.shopKey FROM Shop s WHERE s.isArchived = false")
+	public List<Long> findAllShopKeys();
+
 	@Modifying
 	@Transactional
 	@Query("UPDATE Shop s SET s.isArchived = true, s.modifiedAt = :modifiedAtUtcTime WHERE s.shopKey = :shopKey")

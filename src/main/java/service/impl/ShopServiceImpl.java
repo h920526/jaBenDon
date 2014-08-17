@@ -63,6 +63,11 @@ public class ShopServiceImpl implements ShopService {
 	 */
 
 	@Override
+	public List<Long> findAllShopKeys() {
+		return shopDao.findAllShopKeys();
+	}
+
+	@Override
 	public void archiveShop(long shopKey) {
 		long nowUtcTime = dateFactory.nowUTCDate().getTime();
 		shopDao.archiveShop(shopKey, nowUtcTime);

@@ -30,6 +30,7 @@ public class Order implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "`shop_key`")
+	@Index(name = "shop_key_idx")
 	private Shop shop;
 
 	@Column(name = "`total_price`")

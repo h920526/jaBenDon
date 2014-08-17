@@ -26,6 +26,7 @@ public class OrderUser implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "`order_detail_key`")
+	@Index(name = "order_detail_key_idx")
 	private OrderDetail orderDetail;
 
 	@Column(name = "`order_user_name`")
