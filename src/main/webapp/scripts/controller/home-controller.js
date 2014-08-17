@@ -128,10 +128,14 @@ angular.module('app').controller(
 				SyncFactory.syncAll({
 					'success': function(response) {
 						$scope.applyOrderUsersToOrderUserSelectChoice(response);
-						syncAll();
+						$timeout(function() {
+							syncAll();
+						}, 5000);
 					},
 					'error': function() {
-						syncAll();
+						$timeout(function() {
+							syncAll();
+						}, 5000);
 					}
 				});
 			}
