@@ -6,6 +6,7 @@ import java.util.List;
 public class SyncData implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Long lastSyncTime;
 	private List<Shop> newlyShops;
 	private List<Order> newlyOrders;
 	private List<OrderDetail> newlyOrderDetails;
@@ -18,6 +19,14 @@ public class SyncData implements Serializable {
 	public boolean hasNewlyData() {
 		return (!newlyShops.isEmpty() || !newlyOrders.isEmpty()
 				|| !newlyOrderDetails.isEmpty() || !newlyOrderUsers.isEmpty());
+	}
+
+	public Long getLastSyncTime() {
+		return lastSyncTime;
+	}
+
+	public void setLastSyncTime(Long lastSyncTime) {
+		this.lastSyncTime = lastSyncTime;
 	}
 
 	public List<Shop> getNewlyShops() {

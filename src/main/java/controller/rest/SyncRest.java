@@ -25,14 +25,7 @@ public class SyncRest {
 
 	@RequestMapping(value = "/rest/sync/{utcTime}")
 	public SyncData syncAll(@PathVariable long utcTime) {
-		SyncData syncData = null;
-		while (!(syncData = syncService.syncAll(utcTime)).hasNewlyData()) {
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-			}
-		}
-		return syncData;
+		return syncService.syncAll(utcTime);
 	}
 
 }

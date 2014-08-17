@@ -127,7 +127,9 @@ angular.module('app').controller(
 			function syncAll() {
 				SyncFactory.syncAll({
 					'success': function(response) {
-						$scope.applyOrderUsersToOrderUserSelectChoice(response);
+						if (response.newlyOrderUsers != null && response.newlyOrderUsers.length > 0) {
+							$scope.applyOrderUsersToOrderUserSelectChoice(response);
+						}
 						$timeout(function() {
 							syncAll();
 						}, 5000);
@@ -358,8 +360,6 @@ angular.module('app').controller(
 			 */
 			$(document).ready(function() {
 				initShopAndOrderOnLoad();
-				$timeout(function() {
-					syncAll();
-				}, 5000);
+				syncAll();
 			});
 		} ]);
