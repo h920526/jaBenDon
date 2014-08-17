@@ -2,8 +2,8 @@
 
 angular.module('app').controller(
 	'homeController',
-	[ '$scope', '$timeout', '$interval', '$cookies', '$translate', 'SyncFactory', 'DateFactory', 'RestFactory', 'ObjectFactory', 'ShopFactory', 'OrderService', 'OrderFactory', 'OrderDetailFactory', 'OrderUserFactory',
-		function($scope, $timeout, $interval, $cookies, $translate, SyncFactory, DateFactory, RestFactory, ObjectFactory, ShopFactory, OrderService, OrderFactory, OrderDetailFactory, OrderUserFactory) {
+	[ '$scope', '$timeout', '$cookies', '$translate', 'SyncFactory', 'DateFactory', 'RestFactory', 'ObjectFactory', 'ShopFactory', 'OrderService', 'OrderFactory', 'OrderDetailFactory', 'OrderUserFactory',
+		function($scope, $timeout, $cookies, $translate, SyncFactory, DateFactory, RestFactory, ObjectFactory, ShopFactory, OrderService, OrderFactory, OrderDetailFactory, OrderUserFactory) {
 			/**
 			 * init
 			 */
@@ -22,7 +22,7 @@ angular.module('app').controller(
 			function initShopAndOrderOnLoad() {
 				RestFactory.ajaxRequestBundleWrapper().push(function(wrapperFuncs) {
 					// relad all shops
-					ShopFactory.reloadAllShops(wrapperFuncs);
+					ShopFactory.preloadAllShops(wrapperFuncs);
 				}).push(function(wrapperFuncs) {
 					// reload today order
 					OrderFactory.reloadTodayOrder(wrapperFuncs);
@@ -120,6 +120,18 @@ angular.module('app').controller(
 				confirmToAddTodayOrder(shop.shopKey, {
 					'success': function() {
 						$scope.showOrderDiaglog(true);
+					}
+				});
+			}
+
+			function syncAll() {
+				SyncFactory.syncAll({
+					'success': function(response) {
+						$scope.applyOrderUsersToOrderUserSelectChoice(response);
+						syncAll();
+					},
+					'error': function() {
+						syncAll();
 					}
 				});
 			}
@@ -275,9 +287,6 @@ angular.module('app').controller(
 			};
 
 			$scope.updateShop = function(shop, $event) {
-				
-				console.log(222);
-				
 				if ($event != null && $event.relatedTarget != null && $($event.relatedTarget).is('#orderDialog')) {
 					return;
 				}
@@ -345,12 +354,8 @@ angular.module('app').controller(
 			 */
 			$(document).ready(function() {
 				initShopAndOrderOnLoad();
-				$interval(function() {
-					SyncFactory.syncAll({
-						'success': function(response) {
-							$scope.applyOrderUsersToOrderUserSelectChoice(response);
-						}
-					});
+				$timeout(function() {
+					syncAll();
 				}, 5000);
 			});
 		} ]);

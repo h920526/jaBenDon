@@ -15,6 +15,11 @@ public class SyncData implements Serializable {
 		super();
 	}
 
+	public boolean hasNewlyData() {
+		return (!newlyShops.isEmpty() || !newlyOrders.isEmpty()
+				|| !newlyOrderDetails.isEmpty() || !newlyOrderUsers.isEmpty());
+	}
+
 	public List<Shop> getNewlyShops() {
 		return newlyShops;
 	}

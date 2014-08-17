@@ -99,9 +99,14 @@ angular.module('app').factory('ShopFactory', [ '$injector', '$translate', 'Objec
 			this.sortShops();
 			return this;
 		},
-		'reloadAllShops': function(callBackFuncs) {
-			ShopService.findShops({
+		'preloadAllShops': function(callBackFuncs) {
+			ShopService.findShopKeys({
 				'success': function(response) {
+					for (var i = response.length - 1; i >= 0; i--) {
+						responsep[i] = {
+							'shopKey': response[i]
+						};
+					}
 					ShopFactory.resetShops(response);
 					if (callBackFuncs != null && callBackFuncs.success != null) {
 						callBackFuncs.success(response);

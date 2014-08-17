@@ -11,8 +11,10 @@ angular.module('app').factory('RestFactory', [ '$http', 'ObjectFactory', functio
 
 	var RestFactory = null;
 	return (RestFactory = {
-		'get': function(url, callBackFuncs) {
-			applyActionWrapper($http.get(url), callBackFuncs);
+		'get': function(url, callBackFuncs, ignoreLoadingBar) {
+			applyActionWrapper($http.get(url, {
+				'ignoreLoadingBar': ignoreLoadingBar,
+			}), callBackFuncs);
 			return this;
 		},
 		'post': function(url, data, callBackFuncs) {

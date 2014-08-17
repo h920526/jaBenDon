@@ -21,7 +21,7 @@ angular.module('app').factory('SyncFactory', [ '$injector', 'SyncService', 'Date
 					}
 				},
 				'error': (callBackFuncs != null ? callBackFuncs.error : null)
-			});
+			}, true);
 		}
 	};
 } ]);

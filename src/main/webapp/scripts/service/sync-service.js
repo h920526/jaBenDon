@@ -4,7 +4,7 @@ angular.module('app').service('SyncService', [ 'RestFactory', function(RestFacto
 	/*
 	 * custom service
 	 */
-	this.syncAll = function(utcTime, callBackFuncs) {
-		return RestFactory.get('rest/sync/' + utcTime, callBackFuncs);
+	this.syncAll = function(utcTime, callBackFuncs, ignoreLoadingBar) {
+		return RestFactory.get('rest/sync/' + utcTime, callBackFuncs, ignoreLoadingBar);
 	};
 } ]);

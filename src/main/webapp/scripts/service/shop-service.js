@@ -32,4 +32,7 @@ angular.module('app').service('ShopService', [ 'RestFactory', function(RestFacto
 	/*
 	 * custom service
 	 */
+	this.findShopKeys = function(callBackFuncs) {
+		return RestFactory.get('rest/shop/shopKey', callBackFuncs);
+	};
 } ]);
