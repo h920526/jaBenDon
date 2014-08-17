@@ -24,8 +24,6 @@ public interface OrderUserService {
 
 	public List<OrderUser> findOrderUsersByOrderKey(long orderKey);
 
-	public List<OrderUser> findOrderUsersByOrderDetailKey(long orderDetailKey);
-
 	public List<OrderUser> findOrderUsersNewerThan(long utcTime);
 
 	public List<String> findAllOrderUserNames();

@@ -57,12 +57,6 @@ public class OrderUserRest {
 		return orderUserService.findOrderUsersByOrderKey(orderKey);
 	}
 
-	@RequestMapping(value = "/rest/orderUser/orderDetailKey/{orderDetailKey}", method = RequestMethod.GET)
-	public List<OrderUser> findOrderUsersByOrderDetailKey(
-			@PathVariable long orderDetailKey) {
-		return orderUserService.findOrderUsersByOrderKey(orderDetailKey);
-	}
-
 	@RequestMapping(value = "/rest/orderUser/orderUserName", method = RequestMethod.GET)
 	public List<String> findAllOrderUserNames() {
 		return orderUserService.findAllOrderUserNames();

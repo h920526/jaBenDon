@@ -75,11 +75,6 @@ public class OrderUserServiceImpl implements OrderUserService {
 	}
 
 	@Override
-	public List<OrderUser> findOrderUsersByOrderDetailKey(long orderDetailKey) {
-		return orderUserDao.findOrderUsersByOrderKey(orderDetailKey);
-	}
-
-	@Override
 	public List<OrderUser> findOrderUsersNewerThan(long utcTime) {
 		return orderUserDao.findOrderUsersNewerThan(utcTime);
 	}
