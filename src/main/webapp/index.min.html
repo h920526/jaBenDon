@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title translate="product_name">jaBenDon</title>
+<!-- vendor css -->
+<link rel="stylesheet" href="css/bower_components.min.css" />
+<!-- own css -->
+<link rel="stylesheet" href="css/styles.min.css" />
+<!-- vendor js -->
+<script type="text/javascript" src="js/bower_components.min.js"></script>
+<!-- own js -->
+<script type="text/javascript" src="js/scripts.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div ng-view=""></div>
+		<div class="footer">
+			<p>&copy; <span ng-bind="'product_name' | translate"></span> 2014</p>
+		</div>
+	</div>
+</body>
+</html>

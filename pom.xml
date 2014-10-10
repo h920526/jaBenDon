@@ -57,7 +57,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.180</version>
+			<version>1.4.181</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mchange</groupId>
@@ -104,9 +104,79 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.4</version>
+				<executions>
+					<execution>
+						<id>bower-merge</id>
+						<configuration>
+							<cssSourceDir>bower_components</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>bootstrap/css/bootstrap.min.css</cssSourceFile>
+								<cssSourceFile>bootstrap/css/bootstrap-theme.min.css</cssSourceFile>
+								<cssSourceFile>jquery-ui/themes/base/minified/jquery-ui.min.css</cssSourceFile>
+								<cssSourceFile>angular-loading-bar/build/loading-bar.min.css</cssSourceFile>
+								<cssSourceFile>clockpicker/dist/bootstrap-clockpicker.min.css</cssSourceFile>
+								<cssSourceFile>select2/select2.min.css</cssSourceFile>
+							</cssSourceFiles>
+							<cssTargetDir>css</cssTargetDir>
+							<cssFinalFile>bower_components.min.css</cssFinalFile>
+							<jsSourceDir>bower_components</jsSourceDir>
+							<jsSourceIncludes>
+								<jsSourceInclude>jquery.min.js</jsSourceInclude>
+								<jsSourceInclude>bootstrap/js/bootstrap.min.js</jsSourceInclude>
+								<jsSourceInclude>jquery-ui/ui/minified/jquery-ui.min.js</jsSourceInclude>
+								<jsSourceInclude>angular/angular.min.js</jsSourceInclude>
+								<jsSourceInclude>angular/angular-route.min.js</jsSourceInclude>
+								<jsSourceInclude>angular/angular-cookies.min.js</jsSourceInclude>
+								<jsSourceInclude>angular/angular-sanitize.min.js</jsSourceInclude>
+								<jsSourceInclude>angular/angular-animate.min.js</jsSourceInclude>
+								<jsSourceInclude>angular-loading-bar/build/loading-bar.min.js</jsSourceInclude>
+								<jsSourceInclude>angular-translate/angular-translate.min.js</jsSourceInclude>
+								<jsSourceInclude>angular-translate-loader-static-files/angular-translate-loader-static-files.min.js</jsSourceInclude>
+								<jsSourceInclude>tinymce/tinymce.min.js</jsSourceInclude>
+								<jsSourceInclude>bootbox.min.js</jsSourceInclude>
+								<jsSourceInclude>clockpicker/dist/bootstrap-clockpicker.min.js</jsSourceInclude>
+								<jsSourceInclude>select2/select2.min.js</jsSourceInclude>
+								<jsSourceInclude>async/lib/async.min.js</jsSourceInclude>
+							</jsSourceIncludes>
+							<jsTargetDir>js</jsTargetDir>
+							<jsFinalFile>bower_components.min.js</jsFinalFile>
+							<jsEngine>CLOSURE</jsEngine>
+							<skipMinify>true</skipMinify>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-minify</id>
+						<configuration>
+							<cssSourceDir>styles</cssSourceDir>
+							<cssSourceIncludes>
+								<cssSourceInclude>**/*.css</cssSourceInclude>
+							</cssSourceIncludes>
+							<cssTargetDir>css</cssTargetDir>
+							<cssFinalFile>styles.css</cssFinalFile>
+							<jsSourceDir>scripts</jsSourceDir>
+							<jsSourceIncludes>
+								<jsSourceInclude>**/*.js</jsSourceInclude>
+							</jsSourceIncludes>
+							<jsTargetDir>js</jsTargetDir>
+							<jsFinalFile>scripts.js</jsFinalFile>
+							<jsEngine>CLOSURE</jsEngine>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -114,11 +184,26 @@
 				<version>2.4</version>
 				<configuration>
 					<packagingExcludes>
-						bower_components/angular/docs/**,
-						bower_components/clockpicker/assets/**,
-						bower_components/jquery-ui/demos/**,
-						bower_components/jquery-ui/docs/**
+						bower_components/**,
+						scripts/**,
+						styles/**,
+						index.html,
+						css/styles.css,
+						js/scripts.js
 					</packagingExcludes>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp/bower_components/angular</directory>
+							<targetPath>js</targetPath>
+							<includes>
+								<include>angular.min.js.map</include>
+								<include>angular-route.min.js.map</include>
+								<include>angular-cookies.min.js.map</include>
+								<include>angular-sanitize.min.js.map</include>
+								<include>angular-animate.min.js.map</include>
+							</includes>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 		</plugins>

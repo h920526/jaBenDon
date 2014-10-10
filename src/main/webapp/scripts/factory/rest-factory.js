@@ -13,7 +13,7 @@ angular.module('app').factory('RestFactory', [ '$http', 'ObjectFactory', functio
 	return (RestFactory = {
 		'get': function(url, callBackFuncs, ignoreLoadingBar) {
 			applyActionWrapper($http.get(url, {
-				'ignoreLoadingBar': ignoreLoadingBar,
+				'ignoreLoadingBar': ignoreLoadingBar
 			}), callBackFuncs);
 			return this;
 		},
