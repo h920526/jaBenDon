@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -29,7 +28,6 @@ public class Shop implements Serializable {
 
 	@Column(name = "`shop_content`")
 	@Lob
-	@Transient
 	private String shopContent;
 
 	@Column(name = "`shop_phone`")

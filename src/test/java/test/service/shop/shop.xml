@@ -7,6 +7,7 @@
 
 	<bean id="shopToAdd" class="model.Shop">
 		<property name="shopTitle" value="shop's title" />
+		<property name="shopContent" value="shop's content" />
 	</bean>
 
 </beans>

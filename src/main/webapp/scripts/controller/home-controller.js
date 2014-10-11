@@ -202,6 +202,7 @@ angular.module('app').controller(
 				if ($carouselShop.data('bs.carousel').sliding) {
 					return;
 				}
+				ShopFactory.reloadShop(shopIndex);
 				$carouselShop.carousel(shopIndex);
 			};
 

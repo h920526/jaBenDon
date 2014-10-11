@@ -3,6 +3,7 @@ jaBenDon Change Log
 Version 1.1.0
 ====================
 ．Minify js and css files
+．Lazy load shop data
 
 Version 1.0.1
 ====================

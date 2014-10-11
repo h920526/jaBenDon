@@ -103,8 +103,12 @@ angular.module('app').factory('ShopFactory', [ '$injector', '$translate', 'Objec
 			ShopService.findShopKeys({
 				'success': function(response) {
 					for (var i = response.length - 1; i >= 0; i--) {
-						responsep[i] = {
-							'shopKey': response[i]
+						response[i] = {
+							'shopKey': response[i],
+							'shopTitle': $translate.instant('loading'),
+							'shopNote': $translate.instant('loading'),
+							'shopPhone': $translate.instant('loading'),
+							'shopContent': $translate.instant('loading')
 						};
 					}
 					ShopFactory.resetShops(response);
@@ -115,6 +119,21 @@ angular.module('app').factory('ShopFactory', [ '$injector', '$translate', 'Objec
 				'error': (callBackFuncs != null ? callBackFuncs.error : null)
 			});
 			return this;
+		},
+		'reloadShop': function(shopIndex, overwrite, callBackFuncs) {
+			var shop = shops[shopIndex];
+			if (shop == null || (!overwrite && shop.createdAt > 0)) {
+				return;
+			}
+			ShopService.findShop(shop.shopKey, {
+				'success': function(response) {
+					shops[shopIndex] = response;
+					if (callBackFuncs != null && callBackFuncs.success != null) {
+						callBackFuncs.success(response);
+					}
+				},
+				'error': (callBackFuncs != null ? callBackFuncs.error : null)
+			});
 		},
 		'randomShop': function(ignoreShopKeys) {
 			if (shops.length <= 0) {

@@ -10,5 +10,6 @@
 	"generate_shop_default_content": "Insert content here",
 	"generate_shop_default_phone": "Insert phone here",
 	"generate_shop_default_note": "Insert note here",
-	"order_time_up": "Time's up"
+	"order_time_up": "Time's up",
+	"loading": "loading..."
 }

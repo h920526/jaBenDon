@@ -100,8 +100,10 @@ angular.module('app').directive(
 					$scope.isCarouselSlideStoped = false;
 				});
 				activingShopIndex = $($event.relatedTarget).index();
+
 				OrderFactory.clearTodayOrder();
 				$scope.hideOrderDiaglog(false);
+				ShopFactory.reloadShop(activingShopIndex);
 			}
 
 			function onSlidCarouselShop(element, $scope) {
