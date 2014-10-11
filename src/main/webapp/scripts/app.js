@@ -19,7 +19,7 @@ angular.module('app', [ 'ngRoute', 'ngCookies', 'ngSanitize', 'angular-loading-b
 		 * translate
 		 */
 		$translateProvider.useStaticFilesLoader({
-			prefix: 'scripts/i18n/',
+			prefix: 'i18n/',
 			suffix: '.json'
 		}).preferredLanguage('en_US');
 	} ]);

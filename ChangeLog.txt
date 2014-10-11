@@ -1,5 +1,9 @@
 jaBenDon Change Log
 
+Version 1.1.0
+====================
+．Minify js and css files
+
 Version 1.0.1
 ====================
 ．Refine trusted html rules
