@@ -145,7 +145,7 @@
 						bower_components/angular/docs/**,
 						bower_components/clockpicker/assets/**,
 						bower_components/jquery-ui/demos/**,
-						bower_components/jquery-ui/docs/**
+						bower_components/jquery-ui/docs/**,
 						scripts/**,
 						styles/**,
 						index.html,
