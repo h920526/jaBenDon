@@ -25,6 +25,9 @@ angular.module('app').factory('ObjectFactory', function() {
 		'copy': function(object) {
 			return angular.copy(object);
 		},
+		'each': function(array, callback) {
+			return angular.forEach(array, callback);
+		},
 		// reset inner items for referenced array
 		'resetArray': function(array, replaceWithArray) {
 			if (array === replaceWithArray) {

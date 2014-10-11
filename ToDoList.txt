@@ -2,4 +2,4 @@ jaBenDon Feature Request
 
 ====================
 
-1. replace with websocket
+1. cursor issue on editing

@@ -4,6 +4,7 @@ Version 1.1.0
 ====================
 ．Minify js and css files
 ．Lazy load shop data
+．Changes for contenteditable column
 
 Version 1.0.1
 ====================

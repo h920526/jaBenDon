@@ -116,7 +116,8 @@ angular.module('app').factory('ShopFactory', [ '$injector', '$translate', 'Objec
 						callBackFuncs.success(response);
 					}
 				},
-				'error': (callBackFuncs != null ? callBackFuncs.error : null)
+				'error': (callBackFuncs != null ? callBackFuncs.error : null),
+				'complete': (callBackFuncs != null ? callBackFuncs.complete : null)
 			});
 			return this;
 		},
@@ -127,7 +128,7 @@ angular.module('app').factory('ShopFactory', [ '$injector', '$translate', 'Objec
 			}
 			ShopService.findShop(shop.shopKey, {
 				'success': function(response) {
-					shops[shopIndex] = response;
+					ObjectFactory.replaceObject(shops[shopIndex], response);
 					if (callBackFuncs != null && callBackFuncs.success != null) {
 						callBackFuncs.success(response);
 					}

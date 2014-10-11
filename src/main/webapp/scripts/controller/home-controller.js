@@ -20,24 +20,30 @@ angular.module('app').controller(
 			 * private functions
 			 */
 			function initShopAndOrderOnLoad() {
-				RestFactory.ajaxRequestBundleWrapper().push(function(wrapperFuncs) {
+				async.series([ function(callback) {
 					// relad all shops
-					ShopFactory.preloadAllShops(wrapperFuncs);
-				}).push(function(wrapperFuncs) {
+					ShopFactory.preloadAllShops({
+						'complete': function() {
+							callback(null);
+						}
+					});
+				}, function(callback) {
 					// reload today order
-					OrderFactory.reloadTodayOrder(wrapperFuncs);
-				}).start({
-					'complete': function() {
-						$timeout(function() {
-							if ($scope.order != null && $scope.order.orderKey > 0 && $cookies.isOrderDialogShown !== 'false') {
-								// today order existed
-								gotoSpecifyShopAndShowOrder($scope.order);
-							} else if ($scope.carouselShops.length > 0) {
-								$scope.gotoCarouselShop(0);
-								$scope.playCarouselShop();
-							}
-						}, 500);
-					}
+					OrderFactory.reloadTodayOrder({
+						'complete': function() {
+							callback(null);
+						}
+					});
+				} ], function() {
+					$timeout(function() {
+						if ($scope.order != null && $scope.order.orderKey > 0 && $cookies.isOrderDialogShown !== 'false') {
+							// today order existed
+							gotoSpecifyShopAndShowOrder($scope.order);
+						} else if ($scope.carouselShops.length > 0) {
+							$scope.gotoCarouselShop(0);
+							$scope.playCarouselShop();
+						}
+					}, 500);
 				});
 			}
 
@@ -202,8 +208,8 @@ angular.module('app').controller(
 				if ($carouselShop.data('bs.carousel').sliding) {
 					return;
 				}
-				ShopFactory.reloadShop(shopIndex);
 				$carouselShop.carousel(shopIndex);
+				ShopFactory.reloadShop(shopIndex);
 			};
 
 			$scope.addShop = function() {
@@ -322,8 +328,7 @@ angular.module('app').controller(
 			};
 
 			$scope.applyOrderUsersToOrderUserSelectChoice = function() {
-				for (var i = 0; i < $scope.orderDetails.length; i++) {
-					var orderDetail = $scope.orderDetails[i];
+				ObjectFactory.each($scope.orderDetails, function(orderDetail) {
 					var orderDetailUsers = OrderUserFactory.findOrderUsersByOrderDetailKey(orderDetail.orderDetailKey);
 					var selectChoiceDataArray = [];
 					for (var j = 0; j < orderDetailUsers.length; j++) {
@@ -340,20 +345,18 @@ angular.module('app').controller(
 						return;
 					}
 					orderUserSelectChoiceContainer.select2('data', selectChoiceDataArray);
-					// mark paid by juery data selector
-					RestFactory.functionWrapper(function(selectChoiceDataArray, orderUserSelectChoiceContainer) {
-						$timeout(function() {
-							$('>.select2-choices>.select2-search-choice', orderUserSelectChoiceContainer).each(function(index) {
-								var $orderUserSelectChoiceItem = $(this);
-								if (selectChoiceDataArray[index].isPaid) {
-									$orderUserSelectChoiceItem.addClass('orderUserPaid');
-								} else {
-									$orderUserSelectChoiceItem.removeClass('orderUserPaid');
-								}
-							});
-						}, 500);
-					})(selectChoiceDataArray, orderUserSelectChoiceContainer);
-				}
+					// mark paid by jquery data selector
+					$timeout(function() {
+						$('>.select2-choices>.select2-search-choice', orderUserSelectChoiceContainer).each(function(index) {
+							var $orderUserSelectChoiceItem = $(this);
+							if (selectChoiceDataArray[index].isPaid) {
+								$orderUserSelectChoiceItem.addClass('orderUserPaid');
+							} else {
+								$orderUserSelectChoiceItem.removeClass('orderUserPaid');
+							}
+						});
+					}, 500);
+				});
 			};
 
 			/**
