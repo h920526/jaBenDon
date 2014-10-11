@@ -61,8 +61,8 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="orderDetail in orderDetails" id="orderDetailKey_{{orderDetail.orderDetailKey}}">
-							<td contenteditable="true" onmousedown="event.stopPropagation()" ng-model="orderDetail.mealName" ng-blur="updateOrderDetail(orderDetail)"></td>
-							<td contenteditable="true" onmousedown="event.stopPropagation()" ng-model="orderDetail.mealPrice" ng-blur="updateOrderDetail(orderDetail);updateOrder(order, true);"></td>
+							<td><div contenteditable="true" onmousedown="event.stopPropagation()" ng-model="orderDetail.mealName" ng-blur="updateOrderDetail(orderDetail)"></div></td>
+							<td><div contenteditable="true" onmousedown="event.stopPropagation()" ng-model="orderDetail.mealPrice" ng-blur="updateOrderDetail(orderDetail);updateOrder(order, true);"></div></td>
 							<td onmousedown="event.stopPropagation()"><input type="hidden" select-choice-directive="initOrderUserChoice(orderDetail)" select-choice-directive-onchange="onChangeOrderUserChoice($event, orderDetail)"
 								select-choice-directive-onclick="toggleOrderUserChoice($event)" /></td>
 							<td><span class="glyphicon glyphicon-remove removeOrderDetail" ng-click="confirmToDeleteOrderDetail(orderDetail)"></span></td>

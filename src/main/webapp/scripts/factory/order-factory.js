@@ -63,7 +63,8 @@ angular.module('app').factory('OrderFactory', [ '$injector', 'ObjectFactory', 'R
 						callBackFuncs.success(response);
 					}
 				},
-				'error': (callBackFuncs != null ? callBackFuncs.error : null)
+				'error': (callBackFuncs != null ? callBackFuncs.error : null),
+				'complete': (callBackFuncs != null ? callBackFuncs.complete : null)
 			});
 			return this;
 		},

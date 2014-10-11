@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('app').directive('contenteditable', [ '$sce', '$filter', function($sce, $filter) {
+	var userAgentStr = navigator.userAgent.toLowerCase();
+	var isIE = /msie/.test(userAgentStr);
+
 	return {
 		restrict: 'A',
 		require: '?ngModel',
@@ -25,21 +28,27 @@ angular.module('app').directive('contenteditable', [ '$sce', '$filter', function
 
 			// view -> model
 			function read() {
-				var modelValue = element.html();
-				if (modelValue === '<br>') {
-					modelValue = '';
+				var oldModelValue = element.html();
+				var newModelValue = oldModelValue;
+				if (newModelValue === '<br>') {
+					newModelValue = '';
 				}
 				if (attrs.trustAsHtml) {
-					modelValue = $filter('toTrustedHtmlFilter')(modelValue, true);
+					newModelValue = $filter('toTrustedHtmlFilter')(newModelValue, true);
 				} else {
-					modelValue = $filter('stripHtmlFilter')(modelValue);
+					newModelValue = $filter('stripHtmlFilter')(newModelValue);
 				}
-				ngModel.$setViewValue(modelValue);
-				// reset
-				element.html(modelValue);
+				ngModel.$setViewValue(newModelValue);
+				// reset if html striped
+				if (oldModelValue !== newModelValue) {
+					element.html(newModelValue);
+				}
 			}
-			element.on('blur keyup change', function() {
-				scope.$apply(read);
+			element.on('blur keyup change', function(event) {
+				// bind keyup at contenteditable column for IE only..
+				if (event.type !== 'keyup' || isIE) {
+					scope.$apply(read);
+				}
 			}).each(function() {
 				// change event sequence to first one!
 				var events = $._data(this, "events");
