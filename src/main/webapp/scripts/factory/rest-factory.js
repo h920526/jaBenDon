@@ -28,6 +28,6 @@ angular.module('app').factory('RestFactory', [ '$http', 'ObjectFactory', functio
 		'del': function(url, callBackFuncs) {
 			applyActionWrapper($http['delete'](url), callBackFuncs);
 			return this;
-		},
+		}
 	});
 } ]);
