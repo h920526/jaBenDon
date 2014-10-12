@@ -8,7 +8,7 @@ Download: https://github.com/h920526/jaBenDon/releases
 Requirements
 ========================================
 
-1. JRE 6+
+1. JRE 7+
 2. Apache tomcat 7+
 
 Usage
@@ -16,7 +16,7 @@ Usage
 
 1. Unzip jaBenDon.war as jaBenDon
 2. Copy config.properties.sample at jaBenDon/WEB-INF as config.properties
-3. Modify it's db.jdbcUrl at jaBenDon/WEB-INF/config.properties
+3. Modify db.jdbcUrl at jaBenDon/WEB-INF/config.properties
 4. Copy this jaBenDon folder into your tomcat webapps folder
 5. Startup tomcat7
 
