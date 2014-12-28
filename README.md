@@ -25,7 +25,8 @@ Feature
 
 Random shop:
 
-    1. Random a shop automatically and create an order on it when click the "Today bendon" botton and order doesn't exist
+    1. Random a shop automatically and create an order on it
+       when click the "Today bendon" botton and order doesn't exist
     2. Shop content are editable with a large image
 
 Today bendon:
