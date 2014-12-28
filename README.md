@@ -25,17 +25,17 @@ Feature
 
 Random shop:
 
-    1. Clicking the "Today bendon" botton when carousel sliding and lunch box today aren't existing, random a shop automatically and create an order on it
-    2. Shop content are editable with large image
+    1. Random a shop automatically and create an order on it when click the "Today bendon" botton and order doesn't exist
+    2. Shop content are editable with a large image
 
 Today bendon:
 
-    1. if today order existed, go to the shop of this order and show it's self
-    2. if today order doesn't existed and carousel sliding, random shop and create an order on it
-    3. if today order doesn't existed and carousel pausing, create an order on it
+    1. Go to the shop of this order and show it's self when order exist
+    2. Random shop and create an order on it when order doesn't exist and carousel sliding
+    3. Create an order on it when order doesn't exist and carousel pausing
 
 Order dialog: (show today order only)
 
-    1. show today order if existed on page load
-    2. hide order dialog if user has hide it before
-    3. if order detail nothing, create recently records on it
+    1. Show order if exists on page load
+    2. Hide order dialog if user has hide it before
+    3. Create recently records on it after creating a new order
