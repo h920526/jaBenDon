@@ -1,4 +1,4 @@
-package controller.rest;
+package controller.impl;
 
 import java.util.List;
 
@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.OrderDetailService;
+import controller.OrderDetailController;
 
 @RestController
-public class OrderDetailRest {
+public class OrderDetailControllerImpl implements OrderDetailController {
 
 	@Autowired
 	private OrderDetailService orderDetailService;
 
-	public OrderDetailRest() {
+	public OrderDetailControllerImpl() {
 		super();
 	}
 

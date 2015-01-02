@@ -1,4 +1,4 @@
-package controller.rest;
+package controller.impl;
 
 import java.util.List;
 
@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.ShopService;
+import controller.ShopController;
 
 @RestController
-public class ShopRest {
+public class ShopControllerImpl implements ShopController {
 
 	@Autowired
 	private ShopService shopService;
 
-	public ShopRest() {
+	public ShopControllerImpl() {
 		super();
 	}
 

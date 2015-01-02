@@ -1,4 +1,4 @@
-package controller.rest;
+package controller.impl;
 
 import model.SyncData;
 
@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.SyncService;
+import controller.SyncController;
 
 @RestController
-public class SyncRest {
+public class SyncControllerImpl implements SyncController {
 
 	@Autowired
 	private SyncService syncService;
 
-	public SyncRest() {
+	public SyncControllerImpl() {
 		super();
 	}
 
